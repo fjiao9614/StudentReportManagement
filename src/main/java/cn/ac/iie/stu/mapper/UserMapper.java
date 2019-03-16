@@ -1,6 +1,7 @@
 package cn.ac.iie.stu.mapper;
 
 import cn.ac.iie.stu.domain.User;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {

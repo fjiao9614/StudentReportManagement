@@ -3,18 +3,22 @@ package cn.ac.iie.stu.controller;
 
 import cn.ac.iie.stu.domain.*;
 
+import cn.ac.iie.stu.mapper.ReportMapper;
 import cn.ac.iie.stu.service.ReportService;
 import cn.ac.iie.stu.utils.ReturnFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
+
 @RestController
 @RequestMapping("/report")
 
 public class ReportController {
     @Autowired
-    private ReportService reportService;
+    private ReportMapper reportService;
+//    private ReportService reportService;
 
     /**
      * 根据报告id（r_id）查询报告内容

@@ -1,6 +1,7 @@
 package cn.ac.iie.stu.controller;
 
 import cn.ac.iie.stu.domain.User;
+import cn.ac.iie.stu.mapper.UserMapper;
 import cn.ac.iie.stu.service.UserService;
 import cn.ac.iie.stu.utils.ReturnFormat;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    private UserService userService;
+    private UserMapper userService;
+    //private UserService userService;
 
     /**
      * 用户登录

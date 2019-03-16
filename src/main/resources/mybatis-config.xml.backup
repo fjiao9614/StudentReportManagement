@@ -9,6 +9,7 @@
         <package name="cn.ac.iie.stu.domain"/>
     </typeAliases>
 
+
     <!--配置环境-->
     <environments default="development">
         <!--环境变量-->

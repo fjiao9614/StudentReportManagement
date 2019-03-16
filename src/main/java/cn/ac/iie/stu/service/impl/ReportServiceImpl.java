@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class ReportServiceImpl implements ReportService {
     private static SqlSessionFactory factory = SqlSessionServices.getFactory();
 
@@ -23,10 +23,7 @@ public class ReportServiceImpl implements ReportService {
     public Academic showAcademic(long r_id,int index) throws Exception {
         try(SqlSession session = factory.openSession(true)) {
             return session.getMapper(ReportMapper.class).showAcademic(r_id,index);
-        }catch (Exception e){
-            e.printStackTrace();
         }
-        return null;
     }
 
     @Override
