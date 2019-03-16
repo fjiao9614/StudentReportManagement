@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ac.iie.stu.mapper.UserMapper">
+    <select id="login" resultType="Long">
+        select user.user_id
+        from user
+        where (user.stu_id = #{stu_id} AND user.passwd = #{passwd})
+    </select>
+
+    <select id="getUserById" resultType="User">
+        SELECT *
+        FROM user
+        WHERE user.user_id = #{user_id}
+    </select>
+
+    <select id="changePasswd">
+        UPDATE user
+        SET passwd = #{new_passwd}
+        WHERE (user.user_id = #{user_id} AND user.passwd = #{old_passwd})
+    </select>
+</mapper>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ac.iie.stu.mapper.ReportMapper">
+    <select id="showReport" resultType="Report">
+        select r.r_id,r.status,r.type,r.time,r.academic_overview,r.technology_overview,r.research_overview,
+        r.course_overview,r.experience,r.lacking,r.measure,r.plan
+        from report r
+        where r.r_id = #{r_id}
+    </select>
+    <select id="showAcademic" resultType="Academic">
+        select a.academic_id,a.title,a.status,a.authors,a.details,a.per_num,a.per_contribution
+        from academic a
+        where a.r_id = #{r_id} and a.a_index = #{index}
+    </select>
+    <select id="showCompetition" resultType="Competition">
+        select c.competition_id,c.title,c.award,c.rank,c.per_num
+        from competition c
+        where c.r_id = #{r_id} and c.c_index = #{index}
+    </select>
+    <select id="showCourse" resultType="Course">
+        select c.course_id,c.title,c.grade
+        from course c
+        where c.r_id = #{r_id} and c.c_index = #{index}
+    </select>
+    <select id="showIntellectual" resultType="Intellectual">
+        select i.intellectual_id,i.title,i.status,i.authors,i.type,i.per_num,i.per_contribution
+        from intellectual i
+        where i.r_id = #{r_id} and i.i_index = #{index}
+    </select>
+    <select id="showResearch" resultType="Research">
+        select r.research_id,r.title,r.chapter,r.status,r.authors,r.per_num,r.per_contribution
+        from research r
+        where r.r_id = #{r_id} and r.r_index = #{index}
+    </select>
+    <select id="showService" resultType="Service">
+        select s.service_id,s.type,s.content,s.status,s.spend_time,s.per_num,s.per_contribution
+        from service s
+        where s.r_id = #{r_id} and s.s_index = #{index}
+    </select>
+    <select id="showSuggestion" resultType="Suggestion">
+        select s.sug_id,s.content
+        from suggestion s
+        where s.r_id = #{r_id} and s.s_index = #{index}
+    </select>
+    <select id="showTechnology" resultType="Technology">
+        select t.technology_id,t.project_name,t.module_name,t.code_amount,t.commit_bug,t.resolve_bug
+        from technology t
+        where t.r_id = #{r_id} and t.t_index = #{index}
+    </select>
+
+    <insert id="addReport" parameterType="Report">
+        insert into report(status,type,time,academic_overview,technology_overview,research_overview,course_overview,experience,lacking,measure,plan)
+        values(#{report.status},#{report.type},#{report.time},#{report.academic_overview},#{report.technology_overview},#{report.research_overview},#{report.course_overview},#{report.experience},#{report.lacking},#{report.measure},#{report.plan})
+    </insert>
+
+    <insert id="addAcademic" parameterType="Academic">
+         insert into academic(r_id,a_index,title,status,authors,details,per_num,per_contribution)
+         values(#{academic.r_id},#{academic.a_index},#{academic.title},#{academic.status},#{academic.authors},#{academic.details},#{academic.per_num},#{academic.per_contribution})
+    </insert>
+
+    <insert id="addCompetition" parameterType="Competition">
+        insert into competition(r_id, c_index,title, award, rank, per_num)
+        values(#{competition.r_id},#{competition.c_index}, #{competition.title}, #{competition.award}, #{competition.rank}, #{competition.per_num})
+    </insert>
+
+    <insert id="addCourse" parameterType="Course">
+        insert into course(r_id,c_index,title,grade)
+        values(#{course.r_id},#{course.c_index},#{course.title},#{course.grade})
+    </insert>
+
+    <insert id="addIntellectual" parameterType="Intellectual">
+        insert into intellectual(r_id,i_index,title,status,authors,type,per_num,per_contribution)
+        values(#{intellectual.r_id},#{intellectual.i_index},#{intellectual.title},#{intellectual.status},#{intellectual.authors},#{intellectual.type},#{intellectual.per_num},#{intellectual.per_contribution})
+    </insert>
+
+    <insert id="addResearch" parameterType="Research">
+        insert into research(r_id,r_index,title,chapter,status,authors,per_num,per_contribution)
+        values(#{research.r_id},#{research.r_index},#{research.title},#{research.chapter},#{research.status},#{research.authors},#{research.per_num},#{research.per_contribution})
+    </insert>
+
+    <insert id="addService" parameterType="Service">
+        insert into service(r_id,s_index, type, content, status, spend_time, per_num, per_contribution)
+        values(#{service.r_id}, #{service.s_index},#{service.type}, #{service.content}, #{service.status}, #{service.spend_time}, #{service.per_num}, #{service.per_contribution})
+    </insert>
+
+    <insert id="addSuggestion" parameterType="Suggestion">
+        insert into suggestion(r_id,s_index,content)
+        values(#{suggestion.r_id},#{suggestion.s_index},#{suggestion.content})
+    </insert>
+
+    <insert id="addTechnology" parameterType="Technology">
+        insert into technology(r_id,t_index,project_name,module_name, code_amount, commit_bug, resolve_bug)
+        values(#{technology.r_id},#{technology.t_index},#{technology.project_name},#{technology.module_name}, #{technology.code_amount}, #{technology.commit_bug}, #{technology.resolve_bug})
+    </insert>
+
+    <update id="upAcademic" parameterType="Academic">
+      update academic
+      set
+        title = #{academic.title},
+        status = #{academic.status},
+        authors = #{academic.authors},
+        details = #{academic.details},
+        per_num = #{academic.per_num},
+        per_contribution = #{academic.per_contribution}
+      where a_index = #{academic.a_index} and r_id = #{academic.r_id}
+    </update>
+
+    <update id="upCompetition" parameterType="Competition">
+        update competition
+        set
+        title = #{competition.title},
+        award = #{competition.award},
+        rank = #{competition.rank},
+        per_num = #{competition.per_num}
+        where c_index = #{competition.c_index} and r_id = #{competition.r_id}
+    </update>
+
+    <update id="upCourse" parameterType="Course">
+        update course
+        set
+            title = #{course.title},
+            grade = #{course.grade}
+        where c_index = #{course.c_index} and r_id = #{course.r_id}
+    </update>
+
+    <update id="upIntellectual" parameterType="Intellectual">
+        update intellectual
+        set
+            title = #{intellectual.title},
+            status = #{intellectual.status},
+            authors = #{intellectual.authors},
+            type = #{intellectual.type},
+            per_num = #{intellectual.per_num},
+            per_contribution = #{intellectual.per_contribution}
+        where i_index = #{intellectual.i_index} and r_id = #{intellectual.r_id}
+
+    </update>
+    <update id="upReport" parameterType="Report">
+        update report
+        set
+          status = #{report.status},
+          type = #{report.type},
+          time = #{report.time},
+          academic_overview = #{report.academic_overview},
+          technology_overview = #{report.technology_overview},
+          research_overview = #{report.research_overview},
+          course_overview = #{report.course_overview},
+          experience = #{report.experience},
+          lacking = #{report.lacking},
+          measure = #{report.measure},
+          plan = #{report.plan}
+        where r_id = #{report.r_id}
+    </update>
+
+    <update id="upResearch" parameterType="Research">
+        update research
+        set
+            title = #{research.title},
+            chapter = #{research.chapter},
+            status = #{research.status},
+            authors = #{research.authors},
+            per_num = #{research.per_num},
+            per_contribution = #{research.per_contribution}
+        where r_index = #{research.r_index} and r_id = #{research.r_id}
+    </update>
+
+    <update id="upService" parameterType="Service">
+      update service
+      SET
+        type = #{service.type},
+        content = #{service.content},
+        status = #{service.status},
+        spend_time = #{service.spend_time},
+        per_num = #{service.per_num},
+        per_contribution = #{service.per_contribution}
+      where s_index = #{service.s_index} and r_id = #{service.r_id}
+    </update>
+
+    <update id="upSuggestion" parameterType="Suggestion">
+      update suggestion
+      SET content = #{suggestion.content}
+      where s_index = #{suggestion.s_index} and r_id = #{suggestion.r_id}
+    </update>
+
+    <update id="upTechnology" parameterType="Technology">
+      update technology
+      set
+        project_name = #{technology.project_name},
+        module_name = #{technology.module_name},
+        code_amount = #{technology.code_amount},
+        commit_bug = #{technology.commit_bug},
+        resolve_bug = #{technology.resolve_bug}
+      where t_index = #{technology.t_index} and r_id = #{technology.r_id}
+    </update>
+
+
+    <!--删除记录-->
+    <delete id="delAcademic">
+        delete from academic
+        where a_index = #{index} and r_id = #{r_id}
+    </delete>
+
+    <delete id="delCompetition" >
+        delete from competition
+        where c_index = #{index} and r_id = #{r_id}
+    </delete>
+
+    <delete id="delCourse" >
+        delete from course
+        where c_index = #{index} and r_id = #{r_id}
+    </delete>
+
+    <delete id="delIntellectual" >
+        delete from intellectual
+        where i_index = #{index} and r_id = #{r_id}
+    </delete>
+
+    <delete id="delResearch" >
+        delete from research
+        where r_index = #{index} and r_id = #{r_id}
+    </delete>
+
+    <delete id="delService" >
+        delete from service
+        where s_index = #{index} and r_id = #{r_id}
+    </delete>
+
+    <delete id="delSuggestion" >
+        delete from suggestion
+        where s_index = #{index} and r_id = #{r_id}
+    </delete>
+
+    <delete id="delTechnology" >
+        delete from technology
+        where t_index = #{index} and r_id = #{r_id}
+    </delete>
+
+
+
+    <!-- 新增 -->
+    <select id="getReportId" resultType="Long">
+        select report.r_id
+        from report
+        where report.type = #{type} and report.time = #{time}
+    </select>
+
+    <select id="getReportStatus" resultType="Long">
+        select report.status
+        from report
+        where report.type = #{type} and report.time = #{time}
+    </select>
+
+
+</mapper>
