@@ -1,10 +1,12 @@
 package cn.ac.iie.stu.mapper;
 
 import cn.ac.iie.stu.domain.*;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+@Mapper
 public interface ReportMapper {
     /**
      * 查询报告内容
