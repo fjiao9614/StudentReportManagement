@@ -9,6 +9,7 @@ import cn.ac.iie.stu.utils.ReturnFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @RestController
@@ -21,6 +22,92 @@ public class ReportController {
     /**
      * 根据报告id（r_id）查询报告内容
      */
+    @GetMapping(value = "/allcontent",produces = "application/json;charset=UTF-8")
+    public String AllContent(@RequestParam("r_id") long r_id) {
+        try {
+            Report report = reportMapper.showReport(r_id);
+            List<Academic> academics = reportMapper.showAcademic(r_id);
+            List<Competition> competitions = reportMapper.showCompetition(r_id);
+            List<Course> courses = reportMapper.showCourse(r_id);
+            List<Intellectual> intellectuals = reportMapper.showIntellectual(r_id);
+            List<Research> researches = reportMapper.showResearch(r_id);
+            List<Service> services = reportMapper.showService(r_id);
+            List<Suggestion> suggestions = reportMapper.showSuggestion(r_id);
+            List<Technology> technologies = reportMapper.showTechnology(r_id);
+            AllContent content = new AllContent(report,academics,competitions,courses,intellectuals,researches,services,suggestions,technologies);
+
+            return ReturnFormat.result(content,"查询报告内容成功");
+
+        } catch (Exception e) {
+            return ReturnFormat.failed("查询报告内容失败");
+        }
+    }
+
+    @PostMapping(value="/addcontent",produces = "application/json;charset=UTF-8")
+    public String addContent(@RequestBody AllContent content){
+        try {
+            Report report = content.getReport();
+            List<Academic> academics = content.getAcademics();
+            List<Competition> competitions = content.getCompetitions();
+            List<Course> courses = content.getCourses();
+            List<Intellectual> intellectuals = content.getIntellectuals();
+            List<Research> researches = content.getResearches();
+            List<Service> services = content.getServices();
+            List<Suggestion> suggestions = content.getSuggestions();
+            List<Technology> technologies = content.getTechnologies();
+            reportMapper.addReport(report);
+            if(academics!=null && !academics.isEmpty()){
+                for(Academic academic:academics){
+                    reportMapper.addAcademic(academic);
+                }
+            }
+            if(competitions!=null && !competitions.isEmpty()){
+                for(Competition competition:competitions){
+                    reportMapper.addCompetition(competition);
+                }
+            }
+            if(courses != null && !courses.isEmpty()){
+                for(Course course:courses){
+                    reportMapper.addCourse(course);
+                }
+            }
+            if(intellectuals != null && !intellectuals.isEmpty()){
+                for(Intellectual intellectual:intellectuals){
+                    reportMapper.addIntellectual(intellectual);
+                }
+            }
+
+            if(researches != null && !researches.isEmpty()){
+                for(Research research:researches){
+                    reportMapper.addResearch(research);
+                }
+            }
+
+            if(services != null && !services.isEmpty()){
+                for(Service service:services){
+                    reportMapper.addService(service);
+                }
+            }
+
+            if(suggestions != null && suggestions.isEmpty()){
+                for(Suggestion suggestion:suggestions){
+                    reportMapper.addSuggestion(suggestion);
+                }
+            }
+            if(technologies != null && technologies.isEmpty()){
+                for(Technology technology:technologies){
+                    reportMapper.addTechnology(technology);
+                }
+            }
+
+            return ReturnFormat.success("增加全部内容成功");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ReturnFormat.failed("增加报告内容失败");
+        }
+    }
+
     @PostMapping(value = "/report",produces = "application/json;charset=UTF-8")
     public String showReport(@RequestParam("r_id") long r_id) {
         try {
@@ -32,27 +119,27 @@ public class ReportController {
     }
 
     @PostMapping(value = "/academic",produces = "application/json;charset=UTF-8")
-    public String showAcademic(@RequestParam("r_id") long r_id,@RequestParam("index") int index) {
+    public String showAcademic(@RequestParam("r_id") long r_id) {
         try {
-            return ReturnFormat.result(reportMapper.showAcademic(r_id,index),"查询学术成果成功");
+            return ReturnFormat.result(reportMapper.showAcademic(r_id),"查询学术成果成功");
 
         } catch (Exception e) {
             return ReturnFormat.failed("查询学术成果内容失败");
         }
     }
     @PostMapping(value = "/competition",produces = "application/json;charset=UTF-8")
-    public String showCompetition(@RequestParam("r_id") long r_id,@RequestParam("index") int index) {
+    public String showCompetition(@RequestParam("r_id") long r_id) {
         try {
-            return ReturnFormat.result(reportMapper.showCompetition(r_id,index),"查询竞赛成果成功");
+            return ReturnFormat.result(reportMapper.showCompetition(r_id),"查询竞赛成果成功");
 
         } catch (Exception e) {
             return ReturnFormat.failed("查询竞赛成果内容失败");
         }
     }
     @PostMapping(value = "/course",produces = "application/json;charset=UTF-8")
-    public String showCourse(@RequestParam("r_id") long r_id,@RequestParam("index") int index) {
+    public String showCourse(@RequestParam("r_id") long r_id) {
         try {
-            return ReturnFormat.result(reportMapper.showCourse(r_id,index),"查询课程成果成功");
+            return ReturnFormat.result(reportMapper.showCourse(r_id),"查询课程成果成功");
 
         } catch (Exception e) {
             return ReturnFormat.failed("查询课程成果内容失败");
@@ -60,9 +147,9 @@ public class ReportController {
     }
 
     @PostMapping(value = "/intellectual",produces = "application/json;charset=UTF-8")
-    public String showIntellectual(@RequestParam("r_id") long r_id,@RequestParam("index") int index) {
+    public String showIntellectual(@RequestParam("r_id") long r_id) {
         try {
-            return ReturnFormat.result(reportMapper.showIntellectual(r_id,index),"查询知识产权成果成功");
+            return ReturnFormat.result(reportMapper.showIntellectual(r_id),"查询知识产权成果成功");
 
         } catch (Exception e) {
             return ReturnFormat.failed("查询知识产权内容失败");
@@ -70,9 +157,9 @@ public class ReportController {
     }
 
     @PostMapping(value = "/research",produces = "application/json;charset=UTF-8")
-    public String showResearch(@RequestParam("r_id") long r_id,@RequestParam("index") int index) {
+    public String showResearch(@RequestParam("r_id") long r_id) {
         try {
-            return ReturnFormat.result(reportMapper.showResearch(r_id,index),"查询调研成果成功");
+            return ReturnFormat.result(reportMapper.showResearch(r_id),"查询调研成果成功");
 
         } catch (Exception e) {
             return ReturnFormat.failed("查询调研成果内容失败");
@@ -80,9 +167,9 @@ public class ReportController {
     }
 
     @PostMapping(value = "/service",produces = "application/json;charset=UTF-8")
-    public String showService(@RequestParam("r_id") long r_id,@RequestParam("index") int index) {
+    public String showService(@RequestParam("r_id") long r_id) {
         try {
-            return ReturnFormat.result(reportMapper.showService(r_id,index),"查询支撑服务成果成功");
+            return ReturnFormat.result(reportMapper.showService(r_id),"查询支撑服务成果成功");
 
         } catch (Exception e) {
             return ReturnFormat.failed("查询支撑服务内容失败");
@@ -90,9 +177,9 @@ public class ReportController {
     }
 
     @PostMapping(value = "/suggestion",produces = "application/json;charset=UTF-8")
-    public String showSuggestion(@RequestParam("r_id") long r_id,@RequestParam("index") int index) {
+    public String showSuggestion(@RequestParam("r_id") long r_id) {
         try {
-            return ReturnFormat.result(reportMapper.showSuggestion(r_id,index),"查询建议内容成功");
+            return ReturnFormat.result(reportMapper.showSuggestion(r_id),"查询建议内容成功");
 
         } catch (Exception e) {
             return ReturnFormat.failed("查询建议内容失败");
@@ -100,9 +187,9 @@ public class ReportController {
     }
 
     @PostMapping(value = "/technology",produces = "application/json;charset=UTF-8")
-    public String showTechnology(@RequestParam("r_id") long r_id,@RequestParam("index") int index) {
+    public String showTechnology(@RequestParam("r_id") long r_id) {
         try {
-            return ReturnFormat.result(reportMapper.showTechnology(r_id,index),"查询工程成果成功");
+            return ReturnFormat.result(reportMapper.showTechnology(r_id),"查询工程成果成功");
 
         } catch (Exception e) {
             return ReturnFormat.failed("查询工程成果内容失败");
@@ -406,13 +493,7 @@ public class ReportController {
     }
 
 
-
-
-
-
-
-
-    @PostMapping(value = "/get_reportId",produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/get_reportId",produces = "application/json;charset=UTF-8")
     public String getReportId(@RequestParam("type")int type,@RequestParam("time")String time){
         try{
             return ReturnFormat.result(reportMapper.getReportId(type,time),"获取报告ID成功");
@@ -421,7 +502,7 @@ public class ReportController {
         }
     }
 
-    @PostMapping(value = "/get_reportStatus",produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/get_reportStatus",produces = "application/json;charset=UTF-8")
     public String getReportStatus(@RequestParam("type")int type,@RequestParam("time")String time){
         try{
             return ReturnFormat.result(reportMapper.getReportStatus(type,time),"获取报告状态成功");

@@ -16,14 +16,14 @@ public interface ReportMapper {
      */
     Report showReport(@Param("r_id")long r_id) throws Exception;
 
-    Academic showAcademic(@Param("r_id") long r_id, @Param("index")int index) throws Exception;
-    Competition showCompetition(@Param("r_id") long r_id, @Param("index")int index) throws Exception;
-    Course showCourse(@Param("r_id") long r_id, @Param("index")int index) throws Exception;
-    Intellectual showIntellectual(@Param("r_id")long r_id, @Param("index")int index ) throws Exception;
-    Research showResearch(@Param("r_id") long r_id, @Param("index")int index) throws Exception;
-    Service showService(@Param("r_id") long r_id, @Param("index")int index) throws Exception;
-    Suggestion showSuggestion(@Param("r_id") long r_id, @Param("index")int index) throws Exception;
-    Technology showTechnology(@Param("r_id") long r_id, @Param("index")int index) throws Exception;
+    List<Academic> showAcademic(@Param("r_id") long r_id) throws Exception;
+    List<Competition> showCompetition(@Param("r_id") long r_id) throws Exception;
+    List<Course> showCourse(@Param("r_id") long r_id) throws Exception;
+    List<Intellectual> showIntellectual(@Param("r_id")long r_id) throws Exception;
+    List<Research> showResearch(@Param("r_id") long r_id) throws Exception;
+    List<Service> showService(@Param("r_id") long r_id) throws Exception;
+    List<Suggestion> showSuggestion(@Param("r_id") long r_id) throws Exception;
+    List<Technology> showTechnology(@Param("r_id") long r_id) throws Exception;
 
     void addReport(@Param("report") Report report)throws Exception;
     void addAcademic(@Param("academic") Academic academic)throws Exception;

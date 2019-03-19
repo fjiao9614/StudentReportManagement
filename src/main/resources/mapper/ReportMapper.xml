@@ -9,44 +9,44 @@
         where r.r_id = #{r_id}
     </select>
     <select id="showAcademic" resultType="Academic">
-        select a.academic_id,a.title,a.status,a.authors,a.details,a.per_num,a.per_contribution
+        select a.academic_id,a.r_id,a.a_index,a.title,a.status,a.authors,a.details,a.per_num,a.per_contribution
         from academic a
-        where a.r_id = #{r_id} and a.a_index = #{index}
+        where a.r_id = #{r_id}
     </select>
     <select id="showCompetition" resultType="Competition">
-        select c.competition_id,c.title,c.award,c.rank,c.per_num
+        select c.competition_id,c.r_id,c.c_index,c.title,c.award,c.rank,c.per_num
         from competition c
-        where c.r_id = #{r_id} and c.c_index = #{index}
+        where c.r_id = #{r_id}
     </select>
     <select id="showCourse" resultType="Course">
-        select c.course_id,c.title,c.grade
+        select c.course_id,c.r_id,c.c_index,c.title,c.grade
         from course c
-        where c.r_id = #{r_id} and c.c_index = #{index}
+        where c.r_id = #{r_id}
     </select>
     <select id="showIntellectual" resultType="Intellectual">
-        select i.intellectual_id,i.title,i.status,i.authors,i.type,i.per_num,i.per_contribution
+        select i.intellectual_id,i.r_id,i.i_index,i.title,i.status,i.authors,i.type,i.per_num,i.per_contribution
         from intellectual i
-        where i.r_id = #{r_id} and i.i_index = #{index}
+        where i.r_id = #{r_id}
     </select>
     <select id="showResearch" resultType="Research">
-        select r.research_id,r.title,r.chapter,r.status,r.authors,r.per_num,r.per_contribution
+        select r.research_id,r.r_id,r.r_index,r.title,r.chapter,r.status,r.authors,r.per_num,r.per_contribution
         from research r
-        where r.r_id = #{r_id} and r.r_index = #{index}
+        where r.r_id = #{r_id}
     </select>
     <select id="showService" resultType="Service">
-        select s.service_id,s.type,s.content,s.status,s.spend_time,s.per_num,s.per_contribution
+        select s.service_id,s.r_id,s.s_index,s.type,s.content,s.status,s.spend_time,s.per_num,s.per_contribution
         from service s
-        where s.r_id = #{r_id} and s.s_index = #{index}
+        where s.r_id = #{r_id}
     </select>
     <select id="showSuggestion" resultType="Suggestion">
-        select s.sug_id,s.content
+        select s.sug_id,s.r_id,s.s_index,s.content
         from suggestion s
-        where s.r_id = #{r_id} and s.s_index = #{index}
+        where s.r_id = #{r_id}
     </select>
     <select id="showTechnology" resultType="Technology">
-        select t.technology_id,t.project_name,t.module_name,t.code_amount,t.commit_bug,t.resolve_bug
+        select t.technology_id,t.r_id,t.t_index,t.project_name,t.module_name,t.code_amount,t.commit_bug,t.resolve_bug
         from technology t
-        where t.r_id = #{r_id} and t.t_index = #{index}
+        where t.r_id = #{r_id}
     </select>
 
     <insert id="addReport" parameterType="Report">

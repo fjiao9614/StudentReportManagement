@@ -13,6 +13,9 @@ public class AllContent {
     List<Suggestion> suggestions;
     List<Technology> technologies;
 
+    public AllContent() {
+    }
+
     public AllContent(Report report, List<Academic> academics, List<Competition> competitions, List<Course> courses, List<Intellectual> intellectuals, List<Research> researches, List<Service> services, List<Suggestion> suggestions, List<Technology> technologies) {
         this.report = report;
         this.academics = academics;
