@@ -2,6 +2,7 @@ package cn.ac.iie.stu.domain;
 
 /**
  * 定义用户
+ *
  * @author fujiaojiao
  * @date 2019/03/10 10:47
  */

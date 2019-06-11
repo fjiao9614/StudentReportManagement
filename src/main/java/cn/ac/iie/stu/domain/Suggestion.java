@@ -14,9 +14,14 @@ public class Suggestion {
         this.s_index = s_index;
     }
 
-    public long getR_id() {return r_id; }
+    public long getR_id() {
+        return r_id;
+    }
 
-    public void setR_id(long r_id) {this.r_id = r_id; }
+    public void setR_id(long r_id) {
+        this.r_id = r_id;
+    }
+
     public long getSug_id() {
         return sug_id;
     }

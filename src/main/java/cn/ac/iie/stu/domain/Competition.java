@@ -1,5 +1,6 @@
 package cn.ac.iie.stu.domain;
 
+
 public class Competition {
     private long competition_id;
     private String title;

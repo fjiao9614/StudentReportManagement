@@ -14,9 +14,14 @@ public class Course {
     public void setC_index(int c_index) {
         this.c_index = c_index;
     }
-    public long getR_id() {return r_id; }
 
-    public void setR_id(long r_id) {this.r_id = r_id; }
+    public long getR_id() {
+        return r_id;
+    }
+
+    public void setR_id(long r_id) {
+        this.r_id = r_id;
+    }
 
     public long getCourse_id() {
         return course_id;

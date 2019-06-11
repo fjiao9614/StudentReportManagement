@@ -19,9 +19,13 @@ public class Research {
         this.r_index = r_index;
     }
 
-    public long getR_id() {return r_id; }
+    public long getR_id() {
+        return r_id;
+    }
 
-    public void setR_id(long r_id) {this.r_id = r_id; }
+    public void setR_id(long r_id) {
+        this.r_id = r_id;
+    }
 
     public long getResearch_id() {
         return research_id;

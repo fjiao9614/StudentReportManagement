@@ -6,7 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 
 /**
  * 返回格式化工具类
- * @author Jack
+ * @author Jackal
  * @version 1.0
  * @date 2018-5-4
  */
