@@ -19,9 +19,13 @@ public class Intellectual {
         this.i_index = i_index;
     }
 
-    public long getR_id() {return r_id; }
+    public long getR_id() {
+        return r_id;
+    }
 
-    public void setR_id(long r_id) {this.r_id = r_id; }
+    public void setR_id(long r_id) {
+        this.r_id = r_id;
+    }
 
     public long getIntellectual_id() {
         return intellectual_id;

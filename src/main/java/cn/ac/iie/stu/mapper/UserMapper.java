@@ -4,6 +4,7 @@ import cn.ac.iie.stu.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface UserMapper {
     /**
      * 用户名密码检验

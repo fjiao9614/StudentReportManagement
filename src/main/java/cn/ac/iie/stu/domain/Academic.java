@@ -28,8 +28,15 @@ public class Academic {
     public void setAcademic_id(long academic_id) {
         this.academic_id = academic_id;
     }
-    public long getR_id() { return r_id; }
-    public void setR_id(long r_id) { this.r_id = r_id; }
+
+    public long getR_id() {
+        return r_id;
+    }
+
+    public void setR_id(long r_id) {
+        this.r_id = r_id;
+    }
+
     public String getTitle() {
         return title;
     }

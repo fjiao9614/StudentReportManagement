@@ -1,10 +1,6 @@
 package cn.ac.iie.stu.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.util.Date;
-
 public class Report {
     private long r_id;
     private int status;
@@ -53,9 +49,13 @@ public class Report {
         this.type = type;
     }
 
-    public String getTime() { return time; }
+    public String getTime() {
+        return time;
+    }
 
-    public void setTime(String time) { this.time = time; }
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getAcademic_overview() {
         return academic_overview;
