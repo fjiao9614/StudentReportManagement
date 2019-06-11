@@ -2,13 +2,4 @@
 target
 *.iml
 *.jar
-#.DS_Store
-#/.DS_Store
-#src/main/.DS_Store
-#src/main/java/.DS_Store
-#src/main/java/cn/.DS_Store
-#src/main/java/cn/ac/.DS_Store
-#src/main/java/cn/ac/iie/.DS_Store
-#src/main/java/cn/ac/iie/stu/.DS_Store
-#src/main/resources/.DS_Store
 src/test/
